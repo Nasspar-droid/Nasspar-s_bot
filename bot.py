@@ -134,7 +134,7 @@ def handle_query(call):
         markup = types.InlineKeyboardMarkup(row_width=2)
         markup.add(
             types.InlineKeyboardButton("👤 Owner (@Nazzpar)", url="https://t.me/Nazzpar"),
-            types.InlineKeyboardButton("👥 Admin (@hikarikeen)", url="https://t.me/hikarikeen")
+            types.InlineKeyboardButton("👥 Admin (@hikarikenn)", url="https://t.me/hikarikeen")
         )
         bot.send_message(call.message.chat.id, answer, parse_mode="Markdown", reply_markup=markup)
         
