@@ -3,7 +3,7 @@ from telebot import types
 from datetime import datetime
 
 # 💡 မဖြစ်မနေ ပြင်ဆင်ရမည့် အချက်များ
-TOKEN = "9082926169:AAFOnxwX2BfC6P1XfiQFCxAjyzO2oZmVk3g"            # BotFather ကရတဲ့ Bot Token
+TOKEN = "9082926169:AAFOnxwX2BfC6P1XfiQFCxAJyz02oZwk3g"            # BotFather ကရတဲ့ Bot Token
 CHANNEL_USERNAME = "@seriesmoviesplanet007" # ကိုယ့်ရဲ့ Telegram Channel Username
 CREATOR_ID = 5188275898                    # သင့်ရဲ့ Telegram User ID (Log ပို့ရန်)
 
@@ -79,7 +79,6 @@ def show_main_menu(chat_id):
     markup = types.InlineKeyboardMarkup(row_width=1)
     btn1 = types.InlineKeyboardButton("🥊 Ashita No Joe Series အကြောင်း လေ့လာရန်", callback_data="q1")
     btn2 = types.InlineKeyboardButton("💳 Ashita No Joe အတွက် ငွေပေးချေရန်", callback_data="q2")
-    # 🎬 ဤနေရာတွင် ခလုတ်ကို နှိပ်လိုက်ပါက Channel ထဲသို့ တိုက်ရိုက်ရောက်သွားမည့် Link ခလုတ်အဖြစ် ပြင်ဆင်ထားသည်
     btn3 = types.InlineKeyboardButton("🎬 Ashita No Joe အစမ်းကြည့်ရှုရန် (Channel)", url="https://t.me/ashitanojoefreeep") 
     btn_admin = types.InlineKeyboardButton("💬 Admin ထံ တိုက်ရိုက် ဆက်သွယ်ရန်", url="https://t.me/Nazzpar")
     btn4 = types.InlineKeyboardButton("🔒 Nasspar's Premium Channel အကြောင်း", callback_data="q3")
@@ -101,38 +100,36 @@ def handle_query(call):
     bot.answer_callback_query(call.id)
     
     if call.data == "q1":
-        # Source အပြည့်အစုံနှင့် ပုံပါဝင်သော Ashita No Joe အကြောင်း
-        caption_text = """🥊 *Ashita No Joe (Tomorrow's Joe) - Complete Source Details*
-
-🔥 **ဇာတ်လမ်းအကျဉ်း:**
-တိုကျိုမြို့ရဲ့ ဆင်းရဲသားရပ်ကွက်ထဲက လမ်းဘေးလူဆိုးကောင်လေး Yabuki Joe ဟာ ထူးချွန်တဲ့ လက်ဝှေ့ပညာရှင် Danpei Tange နဲ့ ဆုံတွေ့ပြီးနောက် အမှန်တကယ် လက်ဝှေ့လောကထဲကို ဝင်ရောက်လာပါတယ်။ ဆင်းရဲမွဲတေမှု၊ ဘဝရဲ့ ရုန်းကန်လှုပ်ရှားမှုတွေနဲ့ လက်ဝှေ့ကြိုးဝိုင်းပေါ်က သွေးနဲ့ရင်းတဲ့ တိုက်ပွဲတွေကို ရိုက်ကူးထားတဲ့ ရာစုနှစ်ရဲ့ အကောင်းဆုံး လက်ရာမြောက် Anime တစ်ခု ဖြစ်ပါတယ်။
-
-📊 **Series အချက်အလက်များ:**
-• **Season 1:** Episode 79 (1970 - 1971)
-• **Season 2:** Episode 47 (1980 - 1981)
-• **Total Episodes:** 126 Episodes
-• **IMDb Rating:** 8.2/10
-• **Running Time:** 25 mins per episode
-
-👑 **Member ကြေး:** ၅,၀၀၀ ကျပ် (5k) သီးသန့်"""
+        caption_text = (
+            "Ashita No Joe ခေါ် Tomorrow's Joe က Season အားဖြင့် ၂ ခု ထိ ထွက်ရှိထားပါတယ်။\n\n"
+            "• Season 1 - Episode 79\n"
+            "• Season 2 - Episode 47\n"
+            "• Total Episode: 126\n\n"
+            "• Released Date: (1970 - 1981)\n"
+            "• IMDb 8.2/10\n"
+            "• Running Time: Avg 25 min\n\n"
+            "👑 Member ကြေး ၅၀၀၀ကျပ် (5k)\n\n"
+            "[⚠️ Ashita No Joe Series တစ်ခုတည်း အတွက်သာ ဖြစ်သည်။]\n\n"
+            "(ဇာတ်လမ်းနှင့် ပတ်သက်၍ မေးမြန်းလိုပါက Auto AI reply စနစ် ထည့်သွင်း ထားသောကြောင့် စိတ်ကြိုက်မေးမြန်းနိုင်ပါတယ် ခင်ဗျာ..😉)"
+        )
         
         image_url = "https://m.media-amazon.com/images/M/MV5BYTJmZTFlOGEtYmIxMi00NDY4LTlkZjYtOWExOTk3ZjdhYzk4XkEyXkFqcGdeQXVyMzgxNDA4MjM@._V1_.jpg"
         
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton("💳 အခုပဲ ဝယ်ယူမည် (5,000 MMK)", callback_data="q2"))
-        markup.add(types.InlineKeyboardButton("🎬 Channel တွင် အစမ်းကြည့်ရှုရန်", url=f"https://t.me/{CHANNEL_USERNAME.replace('@', '')}"))
+        markup.add(types.InlineKeyboardButton("🎬 Channel တွင် အစမ်းကြည့်ရှုရန်", url="https://t.me/ashitanojoefreeep"))
         
-        bot.send_photo(call.message.chat.id, image_url, caption=caption_text, parse_mode="Markdown", reply_markup=markup)
+        bot.send_photo(call.message.chat.id, image_url, caption=caption_text, reply_markup=markup)
         
     elif call.data == "q2":
-        answer = f"""💳 *Member ကြေး ပေးချေရန် အချက်အလက်များ*
-
-• **KBZ Pay:** `{KPAY_PHONE}`
-• **Wave Pay:** `{WAVE_PHONE}`
-• **Account Name:** {ACCOUNT_NAME}
-• **ကျသင့်ငွေ:** ၅,၀၀၀ ကျပ် (Joe Series တစ်ခုတည်းအတွက် သီးသန့်)
-
-[⚠️ ငွေပေးချေထားသော Screenshot ဓာတ်ပုံအား အောက်ပါ Admin ထံ ပေးပို့ပေးပါရန်။ ❗]"""
+        answer = (
+            f"💳 *Member ကြေး ပေးချေရန် အချက်အလက်များ*\n\n"
+            f"• **KBZ Pay:** `{KPAY_PHONE}`\n"
+            f"• **Wave Pay:** `{WAVE_PHONE}`\n"
+            f"• **Account Name:** {ACCOUNT_NAME}\n"
+            f"• **ကျသင့်ငွေ:** ၅,၀၀၀ ကျပ် (Joe Series တစ်ခုတည်းအတွက် သီးသန့်)\n\n"
+            "[⚠️ ငွေပေးချေထားသော Screenshot ဓာတ်ပုံအား အောက်ပါ Admin ထံ ပေးပို့ပေးပါရန်။ ❗]"
+        )
         
         markup = types.InlineKeyboardMarkup(row_width=2)
         markup.add(
@@ -145,7 +142,7 @@ def handle_query(call):
         answer = "🔒 *Nasspar's Premium Channel*\n\nလက်ရှိတွင် Premium Channel သီးသန့် မဖွင့်လှစ်သေးပါ။ ဝန်ဆောင်မှုအသစ်များ ထွက်ရှိပါက ဤ Bot မှတစ်ဆင့် အသိပေးသွားပါမည်။ 📵"
         bot.send_message(call.message.chat.id, answer, parse_mode="Markdown")
 
-# 🧠 Smart Auto-Reply / Brain (user များ မေးလေ့ရှိသော မေးခွန်းများကို ဖြေကြားပေးရန်)
+# 🧠 Smart Auto-Reply / Comprehensive AI Brain (ဘာပဲမေးမေး ဖြေပေးနိုင်သော စနစ်)
 @bot.message_handler(func=lambda message: not message.text.startswith('/'))
 def handle_smart_chat(message):
     user_id = message.from_user.id
@@ -157,7 +154,7 @@ def handle_smart_chat(message):
     text = message.text.lower()
     bot.send_chat_action(message.chat.id, 'typing')
     
-    # 🧠 Brain Rules & Keyword Mapping
+    # 🧠 အသေးစိတ် မေးခွန်းများနှင့် အချက်အလက်များ Mapping စနစ်
     if any(k in text for k in ["ဈေးဘယ်လောက်", "ဈေး", "ကျပ်", "ဘယ်လောက်လဲ", "price", "5000", "၅၀၀၀"]):
         reply = "💰 Ashita No Joe Series အတွက် Member ကြေးက **၅,၀၀၀ ကျပ် (5k)** ဖြစ်ပါတယ်။ KPay / Wave Pay တို့ဖြင့် ငွေပေးချေနိုင်ပါတယ်။"
     elif any(k in text for k in ["မန်ဘာဝင်ချင်", "member", "ဝယ်ချင်", "ကြည့်ချင်", "join"]):
@@ -166,14 +163,21 @@ def handle_smart_chat(message):
         reply = "✅ ဟုတ်ကဲ့ပါခင်ဗျာ။ ပေးရမည့် ၅,၀၀၀ ကျပ် (5k) က **Ashita No Joe Series တစ်ခုတည်းအတွက် သီးသန့်** ဖြစ်ပါတယ်။ Season 1 & 2 အစအဆုံး အပြည့်အစုံ ကြည့်ရှုနိုင်မှာ ဖြစ်ပါတယ်။"
     elif any(k in text for k in ["ငွေဘယ်လိုလွှဲ", "ငွေလွှဲ", "kpay", "wave", "ဘယ်လိုပေးရမလဲ", "acc"]):
         reply = f"💳 ငွေလွှဲရန် အချက်အလက်များ:\n• KBZ Pay: `{KPAY_PHONE}`\n• Wave Pay: `{WAVE_PHONE}`\n• အမည်: {ACCOUNT_NAME}\nငွေလွှဲပြီးပါက Screenshot ကို @Nazzpar ထံ ပို့ပေးပါ။"
-    elif any(k in text for k in ["joe", "ဂျိုး", "ashita", "story", "ဇာတ်လမ်း"]):
-        reply = "🥊 Ashita No Joe ဟာ ဆင်းရဲသားဘဝကနေ လက်ဝှေ့ချန်ပီယံဆီသို့ ရုန်းကန်တက်လှမ်းလာတဲ့ Yabuki Joe ရဲ့ ဘဝဇာတ်ကြောင်းဖြစ်ပါတယ်။ Season 1 (79 eps) နဲ့ Season 2 (47 eps) စုစုပေါင်း 126 Episodes ပါဝင်ပါတယ်။"
+    elif any(k in text for k in ["history", "ရေးဆွဲ", "ဖန်တီး", "author", "manga", "manga တွေက", "ဘယ်လိုစရေး", "သမိုင်း"]):
+        reply = "📜 **Ashita No Joe History & Creation:**\nဤလက်ရာကို **Ikki Kajiwara** (ဇာတ်ညွှန်း) နှင့် **Tetsuya Chiba** (သရုပ်ဖော် ရေးဆွဲသူ) တို့က ပူးပေါင်းဖန်တီးခဲ့ကြပါတယ်။ ဂျပန်မန်ဂါသမိုင်းတွင် အထင်ကရအကျဆုံး လက်ဝှေ့ Anime တစ်ခုဖြစ်ပြီး၊ ဆင်းရဲသားဘဝမှ လမ်းဘေးလူဆိုးကောင်လေး Yabuki Joe တစ်ယောက် လက်ဝှေ့ချန်ပီယံဆီသို့ အသက်ကိုရင်းပြီး လျှောက်လှမ်းခဲ့တဲ့ ဘဝခရီးလမ်းကို အစစ်အမှန်ပေါ်လွင်အောင် အနုပညာမြောက်စွာ ရေးဆွဲဖန်တီးခဲ့ခြင်း ဖြစ်ပါတယ်။"
+    elif any(k in text for k in ["လူသိနည်း", "fan", "popular", "နာမည်ကြီးလား", "ပရိသတ်", "impact"]):
+        reply = "⭐ **Ashita No Joe ရဲ့ နာမည်ကျော်ကြားမှုနှင့် ပရိသတ်များ:**\nကမ္ဘာတစ်ဝန်းမှာရော ဂျပန်နိုင်ငံမှာပါ **Classic Anime တွေထဲက နံပါတ်တစ် အထင်ကရ လက်ရာတစ်ခု** အဖြစ် သတ်မှတ်ခံထားရပါတယ်။ ဂျပန်ယဉ်ကျေးမှုအပေါ် ကြီးမားတဲ့ ရိုက်ခတ်မှု (Cultural Impact) ရှိခဲ့ပြီး ယနေ့ခေတ်တိုင်အောင် သစ္စာရှိတဲ့ Hardcore Classic Anime Fans တွေ အမြောက်အမြား အခိုင်အမာ ရှိနေဆဲ ဖြစ်ပါတယ်။"
+    elif any(k in text for k in ["ဇာတ်လမ်းအကျဉ်း", "အကျဉ်း", "ဇာတ်ကြောင်း", "story", "ဘာဇာတ်လမ်းလဲ", "ဘာလဲ"]):
+        reply = "🥊 **Ashita No Joe ဇာတ်လမ်းအကျဉ်း:**\nတိုကျိုမြို့ရဲ့ ဆင်းရဲသားရပ်ကွက်ထဲက လမ်းဘေးလူဆိုးကောင်လေး Yabuki Joe ဟာ ထူးချွန်တဲ့ လက်ဝှေ့ပညာရှင် Danpei Tange နဲ့ ဆုံတွေ့ပြီးနောက် လက်ဝှေ့လောကထဲကို ဝင်ရောက်လာပါတယ်။ ဘဝရဲ့ ဆင်းရဲမွဲတေမှု၊ ကြိုးဝိုင်းပေါ်က သွေးနဲ့ရင်းတဲ့ ပြင်းထန်တဲ့ တိုက်ပွဲတွေနဲ့ ရုန်းကန်လှုပ်ရှားမှုတွေကို အကောင်းဆုံး ရိုက်ကူးပြထားတဲ့ လက်ရာဖြစ်ပါတယ်။"
     elif any(k in text for k in ["admin", "owner", "ဆက်သွယ်", "အက်ဒမင်"]):
         reply = "👨‍💻 Channel Owner ကတော့ @Nazzpar ( Admin: @hikarikeen ) ဖြစ်ပါတယ်။ အသေးစိတ်ကို ဆက်သွယ်မေးမြန်းနိုင်ပါတယ်။"
     elif any(k in text for k in ["hi", "hello", "မင်္ဂလာပါ", "ဟေလို"]):
-        reply = "မင်္ဂလာပါခင်ဗျာ! Nasspar's Bot မှ ကြိုဆိုပါတယ်။ Ashita No Joe နဲ့ ပတ်သက်ပြီး လိုအပ်တာများကို မေးမြန်းနိုင်ပါတယ်။"
+        reply = "မင်္ဂလာပါခင်ဗျာ! Nasspar's Bot မှ ကြိုဆိုပါတယ်။ Ashita No Joe နဲ့ ပတ်သက်ပြီး ဇာတ်လမ်း၊ History နဲ့ မန်ဘာကြေးများကို စိတ်ကြိုက်မေးမြန်းနိုင်ပါတယ်။"
     else:
-        reply = "🤖 သင့်ရဲ့မေးမြန်းချက်ကို လက်ခံရရှိပါတယ်။ Ashita No Joe အကြောင်း သို့မဟုတ် မန်ဘာငွေပေးချေမှုအကြောင်းကို /start နှိပ်၍ ခလုတ်များမှတစ်ဆင့် လေ့လာနိုင်ပါတယ်ခင်ဗျာ။"
+        reply = (
+            "🤖 **Ashita No Joe Bot AI Assistant:**\n"
+            "သင်မေးမြန်းချက်ကို လက်ခံရရှိပါတယ်။ Ashita No Joe ရဲ့ ဇာတ်လမ်း၊ History၊ Season အချက်အလက်များ သို့မဟုတ် မန်ဘာငွေပေးချေမှုများကို Bot ထံမှာ လွတ်လပ်စွာ စာတိုပေးပို့ မေးမြန်းနိုင်ပါတယ်ခင်ဗျာ။ /start ကိုနှိပ်ပြီး ခလုတ်များဖြင့်လည်း လေ့လာနိုင်ပါတယ်! 😉"
+        )
         
     bot.reply_to(message, reply)
 
